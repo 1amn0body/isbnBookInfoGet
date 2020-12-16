@@ -2,6 +2,11 @@ import requests
 from bs4 import BeautifulSoup as bs
 
 def findInfos(isbn):
+    try:
+        isbn = str(int(isbn))
+    except Exception as e:
+        return None
+
     infos = []
 
     url = "https://www.thalia.de/suche?sq="
@@ -39,23 +44,5 @@ def findInfos(isbn):
         except Exception as e:
             infos.append(None)
 
-
         return infos
     return None
-
-
-#isbn = ["9783442268160", "9780553499148", "9781420958713", "9783423252812", "9783426281550", "3426281554", "3841907350"]
-
-#for i in isbn:
-#    print(findInfos(i))
-
-
-while True:
-    print()
-    ipt = input("Eine ISBN oder 'X' angeben: ").lower()
-
-    if ipt == "x":
-        print("Beende...")
-        break
-    else:
-        print(findInfos(ipt))
