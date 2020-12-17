@@ -29,7 +29,6 @@ def isbn10Validate(isbn10):
         return isbn10
     return None
 
-
 def isbnValidate(isbn):
     # only numbers
     isbn = isbn.replace('-', '')
@@ -51,5 +50,3 @@ def isbnValidate(isbn):
         return isbn10Validate(isbn)
 
     return None
-
-#isbn = ["9783442268160", "978-0-553499148", "978-1-420958713", "978-3-423252812", "978-3-426281550", "3-426281554", "3-841907350", "979-1234567896", "978-3453319974", "978-3-7657-2781-8"]

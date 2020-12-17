@@ -2,11 +2,6 @@ import requests, json, re
 from bs4 import BeautifulSoup as bs
 
 def findInfos(isbn):
-    try:
-        isbn = str(int(isbn))
-    except Exception as e:
-        return None
-
     infos = []
 
     url = "https://www.googleapis.com/books/v1/volumes?q=isbn:"
@@ -33,9 +28,7 @@ def findInfos(isbn):
             if sp[i -1] != '\\':
                 sp = sp[:i] + '\\' + sp[i:]
 
-
     jsonObj = json.loads(sp) # json out of multilineString
-
 
     if jsonObj is not None:
         try:
