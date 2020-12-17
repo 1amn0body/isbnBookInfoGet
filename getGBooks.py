@@ -6,7 +6,7 @@ def findInfos(isbn):
         isbn = str(int(isbn))
     except Exception as e:
         return None
-        
+
     infos = []
 
     url = "https://www.googleapis.com/books/v1/volumes?q=isbn:"

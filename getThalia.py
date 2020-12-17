@@ -2,11 +2,6 @@ import requests
 from bs4 import BeautifulSoup as bs
 
 def findInfos(isbn):
-    try:
-        isbn = str(int(isbn))
-    except Exception as e:
-        return None
-
     infos = []
 
     url = "https://www.thalia.de/suche?sq="
@@ -16,7 +11,6 @@ def findInfos(isbn):
 
     #find section
     section = soup.find('section', {'class': ["artikel-details"]})
-    #print(section.prettify())
 
     if section is not None:
         #find title

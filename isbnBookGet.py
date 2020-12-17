@@ -1,25 +1,22 @@
 import getThalia
 import getGBooks
+import isbnValidator
 
 def getter(ipt):
-    if (len(ipt) == 13) or (len(ipt) == 10):
-        #find isbn 13 or 10
-        infos = getThalia.findInfos(ipt)
-        if infos is None:
-            infos = getGBooks.findInfos(ipt)
+    checkedIpt = isbnValidator.isbnValidate(ipt)
 
-        #find isbn 10 if nothin for isbn 13 found
-        if len(ipt) == 13 and infos is None:
-            try:
-                infos = getThalia.findInfos(ipt[3:])
-            except Exception as e:
-                infos = None
+    if checkedIpt is not None and ((len(checkedIpt) == 13) or (len(checkedIpt) == 10)):
+        #find isbn 13 or 10
+        infos = getThalia.findInfos(checkedIpt)
+        if infos is None:
+            infos = getGBooks.findInfos(checkedIpt)
+
+        #find isbn 10 if nothing for isbn 13 was found
+        if len(checkedIpt) == 13 and infos is None:
+            infos = getThalia.findInfos(checkedIpt[3:])
 
             if infos is None:
-                try:
-                    infos = getGBooks.findInfos(ipt[3:])
-                except Exception as e:
-                    infos = None
+                infos = getGBooks.findInfos(checkedIpt[3:])
 
         return infos
     return None
