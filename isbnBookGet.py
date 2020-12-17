@@ -26,7 +26,7 @@ def getter(ipt):
 
 #isbn = ["9783442268160", "9780553499148", "9781420958713", "9783423252812", "9783426281550", "3426281554", "3841907350"]
 
-print("Die Informationen sind nach folgendem Schema aufgebaut. Wenn Sie 'None' zurückbekommen, dann wurde nichts gefunden.")
+print("Die Informationen sind nach folgendem Schema aufgebaut: 'Titel, Buchreihe, Autor(en)' Wenn Sie 'None' zurückbekommen, dann wurde nichts gefunden.")
 print("Bitte Beachten Sie, dass diese möglicherweise fehlerhaft sind oder leicht von der originalen ISBN abweichen.")
 
 while True:
@@ -37,6 +37,4 @@ while True:
         print("Beende...")
         break
     else:
-        print("Bitte Beachten Sie, dass diese Informationen möglicherweise fehlerhaft sind.")
-        print("Bitte Beachten Sie, dass diese Informationen möglicherweise fehlerhaft sind.")
         print(getter(ipt))
