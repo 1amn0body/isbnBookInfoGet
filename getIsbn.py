@@ -33,8 +33,11 @@ def getter(ipt):
         # better readability for external software (separator: ~)
         if infos is not None:
             authors = ""
-            for i in infos[2]:
-                authors += str(i) + "~"
+            if infos[2] is not None:
+                for i in infos[2]:
+                    authors += str(i) + "~"
+            else:
+                authors = "None~"
 
             fullOutput = str(infos[0]) + "~" + str(infos[1]) + "~" + authors + str(infos[3])
             return fullOutput
