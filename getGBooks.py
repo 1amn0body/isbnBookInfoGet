@@ -12,23 +12,24 @@ def findInfos(isbn):
     #getJson
     sp = soup.prettify()
 
-    # searching for unescaped double quotes
+    # searching for unescaped double quotes (if emty key or value it can error...)
     match0 = re.search(r'""', sp)
+    m = [match0.start() for match0 in re.finditer('""', sp)]
+    for i in m:
+        sp = sp[:i +1] + '\\' + sp[i +1:]
+
     match1 = re.search(r'"--"', sp)
+    m = [match1.start() for match1 in re.finditer('"--"', sp)]
+    for i in m:
+        if sp[i -1] != '\\':
+            sp = sp[:i] + '\\' + sp[i:]
 
-    while (match0 is not None) and (match1 is not None):
-        match0 = re.search(r'""', sp)
-        m = [match0.start() for match0 in re.finditer('""', sp)]
-        for i in m:
-            sp = sp[:i +1] + "\\" + sp[i +1:]
 
-        #match1 = re.search(r'"--"', sp)
-        m = [match1.start() for match1 in re.finditer('"--"', sp)]
-        for i in m:
-            if sp[i -1] != '\\':
-                sp = sp[:i] + '\\' + sp[i:]
+    try:
+        jsonObj = json.loads(sp) # json out of multilineString
+    except Exception as e:
+        return None
 
-    jsonObj = json.loads(sp) # json out of multilineString
 
     if jsonObj is not None:
         try:
