@@ -28,6 +28,16 @@ def getter(ipt):
         try:
             infos.append(checkedIpt)
         except Exception as e:
-            raise
-        return infos
+            pass
+
+        # better readability for external software (separator: ~)
+        if infos is not None:
+            authors = ""
+            for i in infos[2]:
+                authors += str(i) + "~"
+
+            fullOutput = str(infos[0]) + "~" + str(infos[1]) + "~" + authors + str(infos[3])
+            return fullOutput
+        else:
+            return None
     return None

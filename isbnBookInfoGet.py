@@ -11,6 +11,10 @@ while True:
         print("Beende...")
         break
     else:
-        print(getIsbn.getter(ipt))
+        out = getIsbn.getter(ipt)
+        if out is not None:
+            print(out.replace('~', ', '))
+        else:
+            print(None)
 
 #isbn = ["9783442268160", "978-0-553499148", "978-1-420958713", "978-3-423252812", "978-3-426281550", "3-426281554", "3-841907350", "979-1234567896", "978-3453319974", "978-3-7657-2781-8"]
