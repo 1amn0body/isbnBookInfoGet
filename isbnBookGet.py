@@ -1,5 +1,4 @@
-import getThalia
-import getGBooks
+import getThalia, getHugendubel, getGBooks
 import isbnValidator
 
 def getter(ipt):
@@ -8,23 +7,30 @@ def getter(ipt):
     if checkedIpt is not None and ((len(checkedIpt) == 13) or (len(checkedIpt) == 10)):
         #find isbn 13 or 10
         infos = getThalia.findInfos(checkedIpt)
+
         if infos is None:
-            infos = getGBooks.findInfos(checkedIpt)
+            infos = getHugendubel.findInfos(checkedIpt)
+
+            if infos is None:
+                infos = getGBooks.findInfos(checkedIpt)
 
         #find isbn 10 if nothing for isbn 13 was found
         if len(checkedIpt) == 13 and infos is None:
             infos = getThalia.findInfos(checkedIpt[3:])
 
             if infos is None:
-                infos = getGBooks.findInfos(checkedIpt[3:])
+                infos = getHugendubel.findInfos(checkedIpt[3:])
+
+                if infos is None:
+                    infos = getGBooks.findInfos(checkedIpt[3:])
 
         return infos
     return None
 
-#isbn = ["9783442268160", "9780553499148", "9781420958713", "9783423252812", "9783426281550", "3426281554", "3841907350"]
+#isbn = ["9783442268160", "978-0-553499148", "978-1-420958713", "978-3-423252812", "978-3-426281550", "3-426281554", "3-841907350", "979-1234567896", "978-3453319974", "978-3-7657-2781-8"]
 
-print("Die Informationen sind nach folgendem Schema aufgebaut: 'Titel, Buchreihe, Autor(en)' Wenn Sie 'None' zurückbekommen, dann wurde nichts gefunden.")
-print("Bitte Beachten Sie, dass diese möglicherweise fehlerhaft sind oder leicht von der originalen ISBN abweichen.")
+print("Die Informationen sind nach dem Schema 'Titel, Buchreihe, Autor(en)' aufgebaut. Wenn Sie 'None' zurückbekommen, dann wurde nichts gefunden.")
+print("Bitte beachten Sie, dass die Informationen möglicherweise fehlerhaft sind.")
 
 while True:
     print()
