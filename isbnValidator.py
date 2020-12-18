@@ -29,7 +29,7 @@ def isbn10Validate(isbn10):
         return isbn10
     return None
 
-def isbn13_10Replace(isbn13):
+def isbn13_10ReplaceCheckDigit(isbn13):
     isbn10Unchecked = isbn13[3:]
 
     #get checkDigit

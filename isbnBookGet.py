@@ -15,7 +15,7 @@ def getter(ipt):
         #find isbn 10 if nothing for isbn 13 was found
         if len(checkedIpt) == 13 and infos is None:
             #make isbn 10 valid
-            newCheckedIpt = isbnValidator.isbn13_10Replace(checkedIpt)
+            newCheckedIpt = isbnValidator.isbn13_10ReplaceCheckDigit(checkedIpt)
 
             #test with isbn 10
             infos = getThalia.findInfos(newCheckedIpt)
