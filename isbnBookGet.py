@@ -7,22 +7,22 @@ def getter(ipt):
     if checkedIpt is not None and ((len(checkedIpt) == 13) or (len(checkedIpt) == 10)):
         #find isbn 13 or 10
         infos = getThalia.findInfos(checkedIpt)
-
         if infos is None:
             infos = getHugendubel.findInfos(checkedIpt)
-
             if infos is None:
                 infos = getGBooks.findInfos(checkedIpt)
 
         #find isbn 10 if nothing for isbn 13 was found
         if len(checkedIpt) == 13 and infos is None:
-            infos = getThalia.findInfos(checkedIpt[3:])
+            #make isbn 10 valid
+            newCheckedIpt = isbnValidator.isbn13_10Replace(checkedIpt)
 
+            #test with isbn 10
+            infos = getThalia.findInfos(newCheckedIpt)
             if infos is None:
-                infos = getHugendubel.findInfos(checkedIpt[3:])
-
+                infos = getHugendubel.findInfos(newCheckedIpt)
                 if infos is None:
-                    infos = getGBooks.findInfos(checkedIpt[3:])
+                    infos = getGBooks.findInfos(newCheckedIpt)
 
         return infos
     return None

@@ -29,6 +29,21 @@ def isbn10Validate(isbn10):
         return isbn10
     return None
 
+def isbn13_10Replace(isbn13):
+    isbn10Unchecked = isbn13[3:]
+
+    #get checkDigit
+    checkDigit = 0
+    for i in range(len(isbn10Unchecked) -1):
+         checkDigit += ((i+1) * int(isbn10Unchecked[i]))
+
+    checkDigit = checkDigit % 11
+
+    #set checkDigit
+    isbn10 = isbn10Unchecked[:-1] + str(checkDigit)
+
+    return isbn10
+
 def isbnValidate(isbn):
     # only numbers
     isbn = isbn.replace('-', '')
