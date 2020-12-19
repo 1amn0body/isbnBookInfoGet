@@ -1,3 +1,5 @@
+import re
+
 def isbn13Validate(isbn13):
     #get checkDigit
     odd = 0
@@ -46,11 +48,10 @@ def isbn13_10ReplaceCheckDigit(isbn13):
 
 def isbnValidate(isbn):
     # only numbers
-    isbn = isbn.replace('-', '')
-    try:
-        isbn = str(int(isbn))
-    except Exception as e:
-        return None
+    if isbn.isdigit():
+        print(isbn)
+    else:
+        isbn = ''.join(filter(lambda i: i.isdigit(), isbn))
 
     # test isbn 13
     if len(isbn) == 13:
