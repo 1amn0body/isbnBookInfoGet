@@ -49,7 +49,7 @@ def isbn13_10ReplaceCheckDigit(isbn13):
 def isbnValidate(isbn):
     # only numbers
     if isbn.isdigit():
-        print(isbn)
+        pass
     else:
         isbn = ''.join(filter(lambda i: i.isdigit(), isbn))
 
