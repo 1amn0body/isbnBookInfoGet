@@ -7,4 +7,3 @@ The [software for the user](https://github.com/1amn0body/isbnBookInfoGet/blob/ma
 In both cases the output is structured according to this scheme: 'Title, Book series, Author(s), Input ISBN'
 
 The executable .exe file is built with [PyInstaller](http://www.pyinstaller.org/).
-Other platform releases may be added in the future.
