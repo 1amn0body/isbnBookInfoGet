@@ -1,4 +1,4 @@
-# isbnBookInfoGet
+# isbnInfoGetter
 
 With this software you are able to get information about books by [ISBN](https://en.wikipedia.org/wiki/International_Standard_Book_Number).
 
