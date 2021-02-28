@@ -1,5 +1,9 @@
-import requests, json, re
+import requests, re
 from bs4 import BeautifulSoup as bs
+try:
+    import simplejson as json
+except Exception as e:
+    import json
 
 def findInfos(isbn):
     infos = []
